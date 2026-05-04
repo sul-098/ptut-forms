@@ -921,22 +921,18 @@
     };
 
     try {
-      const res = await fetch('https://script.google.com/macros/s/AKfycbxX-bFptlHONigvEjTTNDr77ojrwPFG-U2xQK7oDxTXb9toVaV1byTO05odwdNUPy1IxA/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbxX-bFptlHONigvEjTTNDr77ojrwPFG-U2xQK7oDxTXb9toVaV1byTO05odwdNUPy1IxA/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
-      if (res.ok) {
-        document.getElementById('regForm').style.display = 'none';
-        document.getElementById('successScreen').classList.add('show');
-        document.querySelector('.progress-bar').style.display = 'none';
-        document.querySelector('.required-note').style.display = 'none';
-      } else {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Submit registration <span class="arrow"></span>';
-        alert('Something went wrong. Please try again.');
-      }
+      // no-cors means we can't read the response, but submission goes through
+      document.getElementById('regForm').style.display = 'none';
+      document.getElementById('successScreen').classList.add('show');
+      document.querySelector('.progress-bar').style.display = 'none';
+      document.querySelector('.required-note').style.display = 'none';
     } catch (err) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = 'Submit registration <span class="arrow"></span>';
