@@ -895,15 +895,52 @@
     showSection(n - 1);
   }
 
-  function submitForm() {
+  async function submitForm() {
     if (!validateSection(4)) return;
-    console.log('Form submission:', JSON.stringify(formData, null, 2));
-    document.getElementById('regForm').style.display = 'none';
-    document.getElementById('successScreen').classList.add('show');
-    document.querySelector('.progress-bar').style.display = 'none';
-    document.querySelector('.required-note').style.display = 'none';
-    for (let i = 1; i <= 4; i++) {
-      document.getElementById('ps' + i).className = 'prog-seg done';
+
+    const submitBtn = document.querySelector('.btn-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    const payload = {
+      'Full Name':          formData.fullname || '',
+      'Email':              formData.email || '',
+      'Phone':              formData.phone || '',
+      'Role':               formData.role || '',
+      'Institution':        formData.institution || '',
+      'Department':         formData.department || '',
+      'Semester':           formData.semester || '',
+      'Designation':        formData.designation || '',
+      'Career Interests':   (formData.careers || []).join(', '),
+      'Biggest Challenge':  formData.challenge || '',
+      'Question for Panel': formData.panelQuestion || '',
+      'Heard About Event':  formData.source || '',
+      'Will Attend':        formData.attend || '',
+      'Confidence Rating':  formData.confidence ? formData.confidence + ' / 5' : 'Not answered',
+      '_subject':           'New Registration: PTUT Industry Talk — ' + (formData.fullname || 'Unknown'),
+    };
+
+    try {
+      const res = await fetch('https://formspree.io/f/mwvylbzo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        document.getElementById('regForm').style.display = 'none';
+        document.getElementById('successScreen').classList.add('show');
+        document.querySelector('.progress-bar').style.display = 'none';
+        document.querySelector('.required-note').style.display = 'none';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit registration <span class="arrow"></span>';
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit registration <span class="arrow"></span>';
+      alert('Network error. Please check your connection and try again.');
     }
   }
 
