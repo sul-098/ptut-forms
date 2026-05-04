@@ -1,0 +1,190 @@
+
+<style>
+  h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .form-wrap{background:var(--color-background-secondary);padding:1.5rem 1rem;}
+  .form-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;max-width:640px;margin:0 auto;}
+  .form-header{background:#1E2761;padding:1.5rem 1.5rem 1.25rem;}
+  .form-header-accent{height:6px;background:#02C39A;margin-bottom:1.25rem;border-radius:3px 3px 0 0;}
+  .form-title{font-size:20px;font-weight:500;color:#fff;margin:0 0 6px;}
+  .form-subtitle{font-size:13px;color:#CADCFC;margin:0;line-height:1.5;}
+  .form-body{padding:0;}
+  .section-divider{background:#E6F1FB;border-top:0.5px solid var(--color-border-tertiary);padding:10px 1.5rem 8px;}
+  .section-divider span{font-size:11px;font-weight:500;color:#0C447C;letter-spacing:0.04em;text-transform:uppercase;}
+  .question{padding:1rem 1.5rem;border-bottom:0.5px solid var(--color-border-tertiary);}
+  .question:last-child{border-bottom:none;}
+  .q-label{font-size:14px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px;display:flex;align-items:center;gap:6px;}
+  .q-label .req{color:#E24B4A;font-size:13px;}
+  .q-hint{font-size:12px;color:var(--color-text-secondary);margin:0 0 10px;}
+  .q-type{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;margin-left:auto;white-space:nowrap;}
+  .mock-input{background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:9px 12px;font-size:13px;color:var(--color-text-secondary);width:100%;}
+  .mock-input.short{width:60%;}
+  .mock-select{background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:9px 12px;font-size:13px;color:var(--color-text-secondary);width:100%;display:flex;align-items:center;justify-content:space-between;}
+  .radio-group{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+  .radio-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-primary);}
+  .radio-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--color-border-secondary);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .radio-dot.checked{border-color:#028090;}
+  .radio-dot.checked::after{content:'';width:8px;height:8px;border-radius:50%;background:#028090;display:block;}
+  .check-box{width:16px;height:16px;border-radius:3px;border:1.5px solid var(--color-border-secondary);flex-shrink:0;}
+  .check-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-primary);}
+  .scale-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;}
+  .scale-btn{width:36px;height:36px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--color-text-secondary);}
+  .scale-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--color-text-secondary);margin-top:4px;}
+  .cond-badge{font-size:10px;padding:1px 7px;border-radius:20px;background:#FFF8EE;color:#854F0B;border:0.5px solid #FAC775;margin-left:6px;font-weight:500;}
+  .form-footer{background:var(--color-background-secondary);padding:1rem 1.5rem;border-top:0.5px solid var(--color-border-tertiary);display:flex;justify-content:flex-end;}
+  .submit-btn{background:#1E2761;color:#fff;border:none;padding:10px 28px;border-radius:var(--border-radius-md);font-size:14px;font-weight:500;cursor:pointer;}
+  .progress{display:flex;gap:4px;margin-bottom:12px;}
+  .prog-dot{flex:1;height:4px;border-radius:2px;background:#CADCFC;}
+  .prog-dot.done{background:#02C39A;}
+</style>
+
+<h2 class="sr-only">Preview of PTUT Industry Talk registration form for students and faculty</h2>
+
+<div class="form-wrap">
+  <div style="max-width:640px;margin:0 auto 12px;font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:8px;">
+    <div class="progress"><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot"></div><div class="prog-dot"></div></div>
+    <span style="white-space:nowrap;">Form preview</span>
+  </div>
+
+  <div class="form-card">
+    <div class="form-header-accent"></div>
+    <div class="form-header">
+      <p class="form-title">Industry Talk Registration — PTUT Lahore</p>
+      <p class="form-subtitle">Bridging the Gap: Academia & the IT Industry · 2025<br>Register your seat for this free panel talk with industry leaders.</p>
+    </div>
+
+    <div class="form-body">
+
+      <div class="section-divider"><span>Section 1 — Personal information</span></div>
+
+      <div class="question">
+        <p class="q-label">Full name <span class="req">*</span><span class="q-type">Short answer</span></p>
+        <div class="mock-input">Your answer</div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Email address <span class="req">*</span><span class="q-type">Short answer</span></p>
+        <p class="q-hint">We will send your confirmation and event details here.</p>
+        <div class="mock-input">example@email.com</div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Phone number <span class="q-type">Short answer</span></p>
+        <p class="q-hint">Optional — only for event reminders via WhatsApp.</p>
+        <div class="mock-input short">03xx-xxxxxxx</div>
+      </div>
+
+      <div class="section-divider"><span>Section 2 — Who are you?</span></div>
+
+      <div class="question">
+        <p class="q-label">I am a <span class="req">*</span><span class="q-type">Multiple choice</span></p>
+        <div class="radio-group">
+          <div class="radio-row"><div class="radio-dot checked"></div>Student</div>
+          <div class="radio-row"><div class="radio-dot"></div>Faculty member</div>
+          <div class="radio-row"><div class="radio-dot"></div>Industry professional / guest</div>
+          <div class="radio-row"><div class="radio-dot"></div>Other</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Institution / organization <span class="req">*</span><span class="q-type">Short answer</span></p>
+        <p class="q-hint">e.g. PTUT, UMT, FAST, company name</p>
+        <div class="mock-input">Your answer</div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Department / field <span class="req">*</span><span class="q-type">Short answer</span></p>
+        <div class="mock-input short">e.g. Computer Science, IT, Electrical</div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Semester / year of study <span class="cond-badge">Students only</span><span class="q-type">Dropdown</span></p>
+        <div class="mock-select"><span style="color:var(--color-text-secondary);">Select semester...</span><span>▾</span></div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Your designation <span class="cond-badge">Faculty / professionals only</span><span class="q-type">Short answer</span></p>
+        <p class="q-hint">e.g. Lecturer, Assistant Professor, Software Engineer</p>
+        <div class="mock-input">Your answer</div>
+      </div>
+
+      <div class="section-divider"><span>Section 3 — Your interests</span></div>
+
+      <div class="question">
+        <p class="q-label">Which career paths interest you most? <span class="req">*</span><span class="q-type">Checkboxes</span></p>
+        <p class="q-hint">Select all that apply.</p>
+        <div class="radio-group">
+          <div class="check-row"><div class="check-box"></div>DevOps & Cloud Engineering</div>
+          <div class="check-row"><div class="check-box"></div>Full Stack / Web Development</div>
+          <div class="check-row"><div class="check-box"></div>QA & Software Testing</div>
+          <div class="check-row"><div class="check-box"></div>UI/UX Design</div>
+          <div class="check-row"><div class="check-box"></div>AI / Machine Learning</div>
+          <div class="check-row"><div class="check-box"></div>Project Management / Scrum</div>
+          <div class="check-row"><div class="check-box"></div>Freelancing & Entrepreneurship</div>
+          <div class="check-row"><div class="check-box"></div>Not sure yet</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">What is your biggest challenge right now? <span class="req">*</span><span class="q-type">Multiple choice</span></p>
+        <div class="radio-group">
+          <div class="radio-row"><div class="radio-dot"></div>I don't know which career path to choose</div>
+          <div class="radio-row"><div class="radio-dot"></div>I know what I want but don't know how to start</div>
+          <div class="radio-row"><div class="radio-dot"></div>Getting my first internship or job</div>
+          <div class="radio-row"><div class="radio-dot"></div>Bridging the gap between university and industry</div>
+          <div class="radio-row"><div class="radio-dot"></div>Understanding freelancing as a career</div>
+          <div class="radio-row"><div class="radio-dot"></div>Other</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Do you have any specific questions for the panel? <span class="q-type">Paragraph</span></p>
+        <p class="q-hint">Optional — we'll try to address these during the Q&A session.</p>
+        <div class="mock-input" style="height:72px;display:flex;align-items:flex-start;padding-top:10px;">Your question for the speakers...</div>
+      </div>
+
+      <div class="section-divider"><span>Section 4 — Logistics</span></div>
+
+      <div class="question">
+        <p class="q-label">How did you hear about this event? <span class="req">*</span><span class="q-type">Multiple choice</span></p>
+        <div class="radio-group">
+          <div class="radio-row"><div class="radio-dot"></div>WhatsApp group / class group</div>
+          <div class="radio-row"><div class="radio-dot"></div>Faculty announcement</div>
+          <div class="radio-row"><div class="radio-dot"></div>Social media (LinkedIn / Instagram)</div>
+          <div class="radio-row"><div class="radio-dot"></div>Friend or classmate</div>
+          <div class="radio-row"><div class="radio-dot"></div>PTUT notice board</div>
+          <div class="radio-row"><div class="radio-dot"></div>Other</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Will you attend in person? <span class="req">*</span><span class="q-type">Multiple choice</span></p>
+        <div class="radio-group">
+          <div class="radio-row"><div class="radio-dot checked"></div>Yes, I will definitely be there</div>
+          <div class="radio-row"><div class="radio-dot"></div>Most likely yes</div>
+          <div class="radio-row"><div class="radio-dot"></div>Not sure yet</div>
+          <div class="radio-row"><div class="radio-dot"></div>No, but I want updates / recording</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <p class="q-label">Rate your current confidence in entering the IT industry<span class="q-type">Linear scale</span></p>
+        <p class="q-hint">1 = not confident at all  ·  5 = very confident</p>
+        <div class="scale-row">
+          <div class="scale-btn">1</div>
+          <div class="scale-btn">2</div>
+          <div class="scale-btn" style="background:#E1F5EE;border-color:#1D9E75;color:#085041;">3</div>
+          <div class="scale-btn">4</div>
+          <div class="scale-btn">5</div>
+        </div>
+        <div class="scale-labels"><span>Not confident</span><span>Very confident</span></div>
+      </div>
+
+      <div class="form-footer">
+        <button class="submit-btn">Submit registration</button>
+      </div>
+
+    </div>
+  </div>
+</div>
