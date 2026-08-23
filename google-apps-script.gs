@@ -16,6 +16,7 @@ function doPost(e) {
     p.degree,
     p.course,
     p.schedule,
+    p.fee,
     p.motivation,
     p.background,
     p.courseRequests,

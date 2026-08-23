@@ -107,12 +107,11 @@
           <div class="field">
             <label>Personal Email Address <span class="req">*</span></label>
             <input type="email" name="email" id="emailInput" placeholder="ali@example.com" required>
-            <div id="emailDomainNote" style="display:none;color:var(--gray2);font-size:.82rem;margin-top:8px">Must be your official UCP email address, ending in @ucp.edu.pk.</div>
           </div>
           <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" name="mobile" placeholder="+92 300 000 0000" required></div>
           <div class="field">
             <label>University / Organization <span class="req">*</span></label>
-            <select name="university" id="universitySelect" required onchange="updateCourseAvailability()">
+            <select name="university" id="universitySelect" required>
               <option value="">Select your university...</option>
               <option>FAST</option>
               <option>Comsats</option>
@@ -134,24 +133,29 @@
             <label>Which course would you like to register for? <span class="req">*</span></label>
             <select name="course" id="courseSelect" required onchange="updateSchedule()">
               <option value="">Select a course...</option>
-              <option value="Cloud and DevOps Career Services" id="optDevOps" data-label="Cloud and DevOps Career Services">Cloud and DevOps Career Services</option>
-              <option value="Python Foundations For AI" id="optPython" data-label="Python Foundations For AI" disabled>Python Foundations For AI — Seats Full</option>
+              <option value="Web Development">Web Development — PKR 5,000</option>
+              <option value="QA">QA — PKR 5,000</option>
+              <option value="AWS (DevOps)">AWS (DevOps) — PKR 10,000</option>
+              <option value="DevOps Basics (Networking, Linux, Tools)">DevOps Basics (Networking, Linux, Tools) — PKR 5,000</option>
+              <option value="Python Foundations For AI" disabled>Python Foundations For AI — Seats Full</option>
               <optgroup label="Coming Soon">
-                <option disabled>Full Stack Web Development — Coming Soon</option>
                 <option disabled>AI Engineering — Coming Soon</option>
                 <option disabled>DevSecOps & Cloud Security — Coming Soon</option>
                 <option disabled>React Native Mobile Dev — Coming Soon</option>
                 <option disabled>Freelancing Pro — Coming Soon</option>
                 <option disabled>UI/UX Design with Figma — Coming Soon</option>
-                <option disabled>QA Engineering — Coming Soon</option>
                 <option disabled>All Access Bundle — Coming Soon</option>
               </optgroup>
             </select>
-            <div id="courseAvailNote" style="display:none;color:var(--gray2);font-size:.82rem;margin-top:8px">Cloud and DevOps Career Services is currently open to UCP students only. Select "UCP" above to register — other universities coming soon. Python Foundations For AI seats are full.</div>
+            <div style="color:var(--gray2);font-size:.82rem;margin-top:8px">Open to students from any university. Python Foundations For AI seats are full.</div>
           </div>
           <div class="field" id="scheduleField" style="display:none">
             <label>Class Schedule</label>
             <div class="schedule-box" id="scheduleText"></div>
+          </div>
+          <div class="field" id="feeField" style="display:none">
+            <label>Course Fee</label>
+            <div class="schedule-box" id="feeText"></div>
           </div>
         </div>
 
@@ -264,11 +268,16 @@
 
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-document.addEventListener('DOMContentLoaded', updateCourseAvailability);
 
 const COURSE_SCHEDULES = {
-  'Cloud and DevOps Career Services': 'Tuesday & Thursday, 11:00 AM – 1:00 PM',
   'Python Foundations For AI': 'Tuesday & Thursday, 12:00 PM – 2:00 PM'
+};
+
+const COURSE_FEES = {
+  'Web Development': 'PKR 5,000',
+  'QA': 'PKR 5,000',
+  'AWS (DevOps)': 'PKR 10,000',
+  'DevOps Basics (Networking, Linux, Tools)': 'PKR 5,000'
 };
 
 function updateSchedule(){
@@ -281,27 +290,16 @@ function updateSchedule(){
   } else {
     field.style.display = 'none';
   }
+
+  const feeField = document.getElementById('feeField');
+  const feeText = document.getElementById('feeText');
+  if (COURSE_FEES[course]) {
+    feeText.textContent = COURSE_FEES[course];
+    feeField.style.display = 'block';
+  } else {
+    feeField.style.display = 'none';
+  }
 }
-
-function updateCourseAvailability(){
-  const uni = document.getElementById('universitySelect').value;
-  const isUCP = uni === 'UCP';
-  const courseSelect = document.getElementById('courseSelect');
-  const note = document.getElementById('courseAvailNote');
-  const optDevOps = document.getElementById('optDevOps');
-  optDevOps.disabled = !isUCP;
-  optDevOps.textContent = isUCP ? optDevOps.dataset.label : optDevOps.dataset.label + ' — Coming Soon';
-  courseSelect.value = '';
-  updateSchedule();
-  note.style.display = isUCP ? 'none' : 'block';
-
-  const emailInput = document.getElementById('emailInput');
-  const emailNote = document.getElementById('emailDomainNote');
-  emailInput.placeholder = isUCP ? 'yourname@ucp.edu.pk' : 'ali@example.com';
-  emailNote.style.display = isUCP ? 'block' : 'none';
-}
-
-const UCP_EMAIL_RE = /^[^\s@]+@ucp\.edu\.pk$/i;
 
 // Paste the Google Apps Script Web App URL here (see setup guide).
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5QNYi8qhWoNPwM2O36MBIgQJCK495oLzzJu2xcHq4Z7s23Gfzlq3RerzIWV7sTTRxgQ/exec";
@@ -315,12 +313,6 @@ function handleSubmit(e){
   successMsg.style.display = 'none';
   errorMsg.style.display = 'none';
 
-  if (form.university.value === 'UCP' && !UCP_EMAIL_RE.test(form.email.value.trim())) {
-    errorMsg.textContent = '⚠️ Please use your official UCP email address (must end in @ucp.edu.pk).';
-    errorMsg.style.display = 'block';
-    return;
-  }
-
   const courseRequests = Array.from(form.querySelectorAll('input[name="courseRequests"]:checked')).map(el => el.value);
 
   const data = {
@@ -331,6 +323,7 @@ function handleSubmit(e){
     degree: form.degree.value,
     course: form.course.value,
     schedule: COURSE_SCHEDULES[form.course.value] || '',
+    fee: COURSE_FEES[form.course.value] || '',
     motivation: form.motivation.value,
     background: form.background.value,
     courseRequests: courseRequests.join(', '),
