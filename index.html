@@ -3,950 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Industry Talk Registration — PTUT Lahore</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Student Registration — Averon Global</title>
+<meta name="description" content="Register for an Averon Global training program — AWS DevOps, Full Stack, AI Engineering, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
 <style>
-  :root {
-    --navy: #1E2761;
-    --navy-dk: #141A45;
-    --teal: #028090;
-    --teal-lt: #02C39A;
-    --ice: #CADCFC;
-    --white: #ffffff;
-    --off: #F4F6FB;
-    --gray: #64748B;
-    --gray-lt: #E2E8F0;
-    --dark: #1E293B;
-    --red: #E24B4A;
-    --amber: #854F0B;
-    --amber-bg: #FFF8EE;
-    --amber-border: #FAC775;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--navy-dk);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-    position: relative;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(2,192,154,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -100px; left: -100px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(2,128,144,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .page-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    animation: fadeDown 0.6s ease both;
-  }
-
-  .event-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(2,195,154,0.12);
-    border: 1px solid rgba(2,195,154,0.3);
-    color: var(--teal-lt);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-  }
-
-  .event-tag::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--teal-lt);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  .page-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 0.5rem;
-  }
-
-  .page-title span { color: var(--teal-lt); }
-
-  .page-sub {
-    font-size: 14px;
-    color: var(--ice);
-    opacity: 0.8;
-  }
-
-  .form-container {
-    max-width: 660px;
-    margin: 0 auto;
-    animation: fadeUp 0.7s ease 0.1s both;
-  }
-
-  @keyframes fadeDown { from { opacity:0; transform:translateY(-16px);} to { opacity:1; transform:translateY(0);} }
-  @keyframes fadeUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0);} }
-
-  .progress-bar {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 1.5rem;
-    align-items: center;
-  }
-
-  .prog-seg {
-    flex: 1;
-    height: 3px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.1);
-    transition: background 0.4s;
-  }
-
-  .prog-seg.active { background: var(--teal-lt); }
-  .prog-seg.done   { background: rgba(2,195,154,0.4); }
-
-  .prog-label {
-    font-size: 11px;
-    color: var(--teal-lt);
-    margin-left: 8px;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-
-  .form-section {
-    display: none;
-  }
-
-  .form-section.active {
-    display: block;
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .section-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
-
-  .section-header {
-    background: rgba(2,128,144,0.15);
-    border-bottom: 1px solid rgba(2,128,144,0.2);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-num {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: var(--teal);
-    color: var(--white);
-    font-size: 11px;
-    font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .section-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--teal-lt);
-    letter-spacing: 0.03em;
-  }
-
-  .question-group {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .q-block { display: flex; flex-direction: column; gap: 7px; }
-
-  .q-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-
-  .req { color: var(--teal-lt); font-size: 13px; }
-
-  .cond-pill {
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    background: rgba(250,199,117,0.15);
-    color: var(--amber-border);
-    border: 1px solid rgba(250,199,117,0.3);
-    font-weight: 500;
-  }
-
-  .q-hint {
-    font-size: 12px;
-    color: rgba(202,220,252,0.6);
-    line-height: 1.5;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea,
-  select {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 11px 14px;
-    font-size: 14px;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    -webkit-appearance: none;
-  }
-
-  input[type="text"]::placeholder,
-  input[type="email"]::placeholder,
-  input[type="tel"]::placeholder,
-  textarea::placeholder { color: rgba(202,220,252,0.35); }
-
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--teal);
-    background: rgba(2,128,144,0.08);
-  }
-
-  input.error, select.error, textarea.error {
-    border-color: var(--red);
-    background: rgba(226,75,74,0.06);
-  }
-
-  .error-msg {
-    font-size: 11px;
-    color: var(--red);
-    display: none;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .error-msg.show { display: flex; }
-
-  select option { background: var(--navy-dk); color: var(--white); }
-  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
-
-  .radio-grid, .check-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .radio-opt, .check-opt {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.03);
-    transition: all 0.15s;
-    font-size: 13.5px;
-    color: rgba(202,220,252,0.85);
-    user-select: none;
-  }
-
-  .radio-opt:hover, .check-opt:hover {
-    background: rgba(2,128,144,0.1);
-    border-color: rgba(2,128,144,0.3);
-    color: var(--white);
-  }
-
-  .radio-opt.selected, .check-opt.selected {
-    background: rgba(2,195,154,0.1);
-    border-color: rgba(2,195,154,0.4);
-    color: var(--white);
-  }
-
-  .radio-dot {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    border: 2px solid rgba(202,220,252,0.3);
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.15s;
-  }
-
-  .radio-opt.selected .radio-dot {
-    border-color: var(--teal-lt);
-  }
-
-  .radio-dot::after {
-    content: '';
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--teal-lt);
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.15s;
-  }
-
-  .radio-opt.selected .radio-dot::after {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .check-box-el {
-    width: 18px; height: 18px;
-    border-radius: 5px;
-    border: 2px solid rgba(202,220,252,0.3);
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
-
-  .check-opt.selected .check-box-el {
-    border-color: var(--teal-lt);
-    background: var(--teal-lt);
-  }
-
-  .check-box-el::after {
-    content: '';
-    width: 5px; height: 9px;
-    border: 2px solid var(--navy-dk);
-    border-top: none; border-left: none;
-    transform: rotate(45deg) scale(0) translateY(-1px);
-    transition: transform 0.15s;
-  }
-
-  .check-opt.selected .check-box-el::after {
-    transform: rotate(45deg) scale(1) translateY(-1px);
-  }
-
-  .scale-wrapper { display: flex; flex-direction: column; gap: 8px; }
-
-  .scale-row {
-    display: flex;
-    gap: 8px;
-  }
-
-  .scale-btn {
-    flex: 1;
-    min-width: 0;
-    aspect-ratio: 1;
-    max-width: 52px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
-    color: rgba(202,220,252,0.7);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .scale-btn:hover {
-    background: rgba(2,128,144,0.15);
-    border-color: rgba(2,128,144,0.4);
-    color: var(--white);
-  }
-
-  .scale-btn.selected {
-    background: rgba(2,195,154,0.2);
-    border-color: var(--teal-lt);
-    color: var(--teal-lt);
-  }
-
-  .scale-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: rgba(202,220,252,0.45);
-  }
-
-  .nav-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    gap: 12px;
-  }
-
-  .btn {
-    padding: 12px 28px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s;
-  }
-
-  .btn-back {
-    background: transparent;
-    color: rgba(202,220,252,0.6);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .btn-back:hover { color: var(--white); border-color: rgba(255,255,255,0.25); }
-
-  .btn-next {
-    background: var(--teal);
-    color: var(--white);
-    margin-left: auto;
-    display: flex; align-items: center; gap: 8px;
-  }
-
-  .btn-next:hover { background: #026f7d; }
-
-  .btn-submit {
-    background: var(--teal-lt);
-    color: var(--navy-dk);
-    font-weight: 600;
-    margin-left: auto;
-    display: flex; align-items: center; gap: 8px;
-  }
-
-  .btn-submit:hover { background: #01a882; }
-
-  .arrow {
-    width: 16px; height: 16px;
-    border-top: 2px solid currentColor;
-    border-right: 2px solid currentColor;
-    transform: rotate(45deg);
-    display: inline-block;
-    flex-shrink: 0;
-  }
-
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 3rem 2rem;
-    animation: fadeUp 0.5s ease both;
-  }
-
-  .success-screen.show { display: block; }
-
-  .success-icon {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    background: rgba(2,195,154,0.15);
-    border: 2px solid var(--teal-lt);
-    margin: 0 auto 1.5rem;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .check-mark {
-    width: 20px; height: 32px;
-    border-right: 3px solid var(--teal-lt);
-    border-bottom: 3px solid var(--teal-lt);
-    transform: rotate(45deg) translateY(-4px);
-  }
-
-  .success-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-  }
-
-  .success-sub {
-    font-size: 14px;
-    color: var(--ice);
-    opacity: 0.75;
-    line-height: 1.6;
-    max-width: 380px;
-    margin: 0 auto 2rem;
-  }
-
-  .detail-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
-
-  .chip {
-    background: rgba(2,128,144,0.15);
-    border: 1px solid rgba(2,128,144,0.25);
-    color: var(--teal-lt);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-
-  .required-note {
-    font-size: 12px;
-    color: rgba(202,220,252,0.4);
-    margin-bottom: 1rem;
-    text-align: right;
-  }
-
-  @media (max-width: 480px) {
-    .scale-row { gap: 5px; }
-    .scale-btn { font-size: 13px; }
-    .btn { padding: 11px 20px; font-size: 13px; }
-  }
+.page-hero{padding:150px 5% 60px;text-align:center}
+.page-hero .section-label{display:block}
+.page-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:800;margin:0 0 20px;line-height:1.15;letter-spacing:-0.01em}
+.page-hero p{font-size:1.05rem;color:var(--gray);max-width:560px;margin:0 auto;line-height:1.7}
+.reg-section{padding:0 5% 100px}
+.reg-wrap{max-width:720px;margin:0 auto}
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:40px}
+.form-section{margin-bottom:32px}
+.form-section:last-of-type{margin-bottom:0}
+.form-section h2{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--white)}
+.form-section h2 span.n{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--cyan);border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.1);border-radius:6px;padding:2px 8px}
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:8px;color:var(--white)}
+.field .req{color:var(--cyan)}
+.field input,.field select,.field textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s;box-sizing:border-box}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan)}
+.field textarea{resize:vertical;min-height:100px}
+.field select option{background:var(--bg3)}
+.check-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.check-opt,.radio-opt{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:.88rem;cursor:pointer;transition:border-color .2s;color:var(--white)}
+.check-opt:hover,.radio-opt:hover{border-color:rgba(0,212,255,.3)}
+.check-opt input,.radio-opt input{width:auto;accent-color:var(--cyan)}
+.radio-grid{display:flex;gap:10px;flex-wrap:wrap}
+.radio-grid .radio-opt{flex:1;min-width:140px;justify-content:center}
+.schedule-box{display:flex;align-items:center;gap:10px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:10px;padding:13px 16px;color:var(--cyan);font-size:.9rem;font-weight:500}
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;border:none;border-radius:10px;cursor:pointer;transition:opacity .2s,transform .2s;margin-top:8px;box-shadow:0 0 30px rgba(0,212,255,0.2)}
+.submit-btn:hover{opacity:.9;transform:translateY(-2px)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.success-msg{display:none;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:16px;text-align:center;color:#34D399;font-weight:600;margin-top:16px}
+.error-msg{display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:16px;text-align:center;color:#F87171;font-weight:600;margin-top:16px}
+@media(max-width:640px){.form-card{padding:24px}.check-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.check-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<div class="page-header">
-  <div class="event-tag">Free event · PTUT Lahore · 2025</div>
-  <h1 class="page-title">Register for the<br><span>Industry Talk</span></h1>
-  <p class="page-sub">Bridging the Gap: Academia &amp; the IT Industry</p>
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="https://averongbl.com/" class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+      <defs>
+        <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00D4FF"/>
+          <stop offset="50%" stop-color="#2563EB"/>
+          <stop offset="100%" stop-color="#7C3AED"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#2563EB" stop-opacity="0.3"/>
+        </linearGradient>
+      </defs>
+      <path d="M19 3 L35 34 H24 L19 22 L14 34 H3 L19 3Z" fill="url(#lg1)"/>
+      <path d="M19 10 L29 32 H24 L19 20 L14 32 H9 L19 10Z" fill="url(#lg2)"/>
+      <circle cx="19" cy="24" r="2.5" fill="#00D4FF"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">AVERON</span>
+      <span class="logo-tagline">GLOBAL</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://averongbl.com/courses.html">Courses</a></li>
+    <li><a href="https://averongbl.com/about.html">About</a></li>
+    <li><a href="https://averongbl.com/contact.html">Contact</a></li>
+    <li><a href="#regForm" class="nav-cta active">Register →</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="https://averongbl.com/courses.html" onclick="toggleMenu()">Courses</a></li>
+    <li><a href="https://averongbl.com/about.html" onclick="toggleMenu()">About</a></li>
+    <li><a href="https://averongbl.com/contact.html" onclick="toggleMenu()">Contact</a></li>
+  </ul>
 </div>
 
-<div class="form-container">
-  <div class="progress-bar">
-    <div class="prog-seg active" id="ps1"></div>
-    <div class="prog-seg" id="ps2"></div>
-    <div class="prog-seg" id="ps3"></div>
-    <div class="prog-seg" id="ps4"></div>
-    <span class="prog-label" id="prog-label">Step 1 of 4</span>
-  </div>
+<div class="page-hero">
+  <span class="section-label">Student Registration</span>
+  <h1>Join Averon Global</h1>
+  <p>Fill out the form below to register for a training program. We'll reach out within 48 hours with your cohort details.</p>
+</div>
 
-  <p class="required-note"><span style="color:var(--teal-lt);">*</span> Required fields</p>
+<div class="reg-section">
+  <div class="reg-wrap">
+    <div class="form-card">
+      <form id="regForm" onsubmit="handleSubmit(event)">
 
-  <form id="regForm" novalidate>
-
-    <!-- SECTION 1: Personal Info -->
-    <div class="form-section active" id="sec1">
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">1</div>
-          <span class="section-title">Personal information</span>
-        </div>
-        <div class="question-group">
-
-          <div class="q-block">
-            <label class="q-label" for="fullname">Full name <span class="req">*</span></label>
-            <input type="text" id="fullname" name="fullname" placeholder="Your full name" required>
-            <span class="error-msg" id="err-fullname">&#9888; Please enter your full name</span>
+        <div class="form-section">
+          <h2><span class="n">01</span> Personal Information</h2>
+          <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" name="fullName" placeholder="Ali Ahmed" required></div>
+          <div class="field">
+            <label>Personal Email Address <span class="req">*</span></label>
+            <input type="email" name="email" id="emailInput" placeholder="ali@example.com" required>
+            <div id="emailDomainNote" style="display:none;color:var(--gray2);font-size:.82rem;margin-top:8px">Must be your official UCP email address, ending in @ucp.edu.pk.</div>
           </div>
-
-          <div class="q-block">
-            <label class="q-label" for="email">Email address <span class="req">*</span></label>
-            <p class="q-hint">We will send your confirmation and event details here.</p>
-            <input type="email" id="email" name="email" placeholder="yourname@email.com" required>
-            <span class="error-msg" id="err-email">&#9888; Please enter a valid email address</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label" for="phone">Phone number</label>
-            <p class="q-hint">Optional — for event reminders via WhatsApp.</p>
-            <input type="tel" id="phone" name="phone" placeholder="03xx-xxxxxxx" style="width:55%;">
-          </div>
-
-        </div>
-      </div>
-      <div class="nav-row">
-        <button type="button" class="btn btn-next" onclick="nextSection(1)">Next <span class="arrow"></span></button>
-      </div>
-    </div>
-
-    <!-- SECTION 2: Who Are You -->
-    <div class="form-section" id="sec2">
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">2</div>
-          <span class="section-title">Who are you?</span>
-        </div>
-        <div class="question-group">
-
-          <div class="q-block">
-            <label class="q-label">I am a <span class="req">*</span></label>
-            <div class="radio-grid" id="role-group">
-              <div class="radio-opt" onclick="selectRadio('role-group', this, 'role')" data-value="Student">
-                <div class="radio-dot"></div>Student
-              </div>
-              <div class="radio-opt" onclick="selectRadio('role-group', this, 'role')" data-value="Faculty member">
-                <div class="radio-dot"></div>Faculty member
-              </div>
-              <div class="radio-opt" onclick="selectRadio('role-group', this, 'role')" data-value="Industry professional / guest">
-                <div class="radio-dot"></div>Industry professional / guest
-              </div>
-              <div class="radio-opt" onclick="selectRadio('role-group', this, 'role')" data-value="Other">
-                <div class="radio-dot"></div>Other
-              </div>
-            </div>
-            <span class="error-msg" id="err-role">&#9888; Please select an option</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label" for="institution">Institution / organization <span class="req">*</span></label>
-            <p class="q-hint">e.g. PTUT, UMT, FAST, company name</p>
-            <input type="text" id="institution" name="institution" placeholder="Your institution or company" required>
-            <span class="error-msg" id="err-institution">&#9888; Please enter your institution</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label" for="department">Department / field <span class="req">*</span></label>
-            <input type="text" id="department" name="department" placeholder="e.g. Computer Science, IT, Electrical" required>
-            <span class="error-msg" id="err-department">&#9888; Please enter your department</span>
-          </div>
-
-          <div class="q-block" id="semester-block">
-            <label class="q-label" for="semester">Semester / year of study <span class="cond-pill">Students only</span></label>
-            <select id="semester" name="semester">
-              <option value="">Select semester...</option>
-              <option>1st Semester</option>
-              <option>2nd Semester</option>
-              <option>3rd Semester</option>
-              <option>4th Semester</option>
-              <option>5th Semester</option>
-              <option>6th Semester</option>
-              <option>7th Semester</option>
-              <option>8th Semester</option>
-              <option>Final Year</option>
+          <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" name="mobile" placeholder="+92 300 000 0000" required></div>
+          <div class="field">
+            <label>University / Organization <span class="req">*</span></label>
+            <select name="university" id="universitySelect" required onchange="updateCourseAvailability()">
+              <option value="">Select your university...</option>
+              <option>FAST</option>
+              <option>Comsats</option>
+              <option>PUCIT</option>
+              <option>GCU</option>
+              <option>UCP</option>
+              <option>UOL</option>
+              <option>UMT</option>
+              <option>PTUT</option>
+              <option>Other</option>
             </select>
           </div>
-
-          <div class="q-block" id="designation-block" style="display:none;">
-            <label class="q-label" for="designation">Your designation <span class="cond-pill">Faculty / professionals</span></label>
-            <p class="q-hint">e.g. Lecturer, Assistant Professor, Software Engineer</p>
-            <input type="text" id="designation" name="designation" placeholder="Your current role or title">
-          </div>
-
+          <div class="field"><label>Degree / Profession</label><input type="text" name="degree" placeholder="e.g. BS Computer Science / Working Professional"></div>
         </div>
-      </div>
-      <div class="nav-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(2)">Back</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(2)">Next <span class="arrow"></span></button>
-      </div>
-    </div>
 
-    <!-- SECTION 3: Interests -->
-    <div class="form-section" id="sec3">
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">3</div>
-          <span class="section-title">Your interests</span>
+        <div class="form-section">
+          <h2><span class="n">02</span> Course Selection</h2>
+          <div class="field">
+            <label>Which course would you like to register for? <span class="req">*</span></label>
+            <select name="course" id="courseSelect" required onchange="updateSchedule()">
+              <option value="">Select a course...</option>
+              <option value="Cloud and DevOps Career Services" id="optDevOps" data-label="Cloud and DevOps Career Services">Cloud and DevOps Career Services</option>
+              <option value="Python Foundations For AI" id="optPython" data-label="Python Foundations For AI" disabled>Python Foundations For AI — Seats Full</option>
+              <optgroup label="Coming Soon">
+                <option disabled>Full Stack Web Development — Coming Soon</option>
+                <option disabled>AI Engineering — Coming Soon</option>
+                <option disabled>DevSecOps & Cloud Security — Coming Soon</option>
+                <option disabled>React Native Mobile Dev — Coming Soon</option>
+                <option disabled>Freelancing Pro — Coming Soon</option>
+                <option disabled>UI/UX Design with Figma — Coming Soon</option>
+                <option disabled>QA Engineering — Coming Soon</option>
+                <option disabled>All Access Bundle — Coming Soon</option>
+              </optgroup>
+            </select>
+            <div id="courseAvailNote" style="display:none;color:var(--gray2);font-size:.82rem;margin-top:8px">Cloud and DevOps Career Services is currently open to UCP students only. Select "UCP" above to register — other universities coming soon. Python Foundations For AI seats are full.</div>
+          </div>
+          <div class="field" id="scheduleField" style="display:none">
+            <label>Class Schedule</label>
+            <div class="schedule-box" id="scheduleText"></div>
+          </div>
         </div>
-        <div class="question-group">
 
-          <div class="q-block">
-            <label class="q-label">Which career paths interest you? <span class="req">*</span></label>
-            <p class="q-hint">Select all that apply.</p>
-            <div class="check-grid" id="careers-group">
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>DevOps &amp; Cloud Engineering</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>Full Stack / Web Development</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>QA &amp; Software Testing</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>UI/UX Design</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>AI / Machine Learning</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>Project Management / Scrum</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>Freelancing &amp; Entrepreneurship</div>
-              <div class="check-opt" onclick="toggleCheck(this, 'careers')"><div class="check-box-el"></div>Not sure yet</div>
-            </div>
-            <span class="error-msg" id="err-careers">&#9888; Please select at least one option</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label">Biggest challenge right now <span class="req">*</span></label>
-            <div class="radio-grid" id="challenge-group">
-              <div class="radio-opt" onclick="selectRadio('challenge-group', this, 'challenge')" data-value="Don't know which career path to choose"><div class="radio-dot"></div>I don't know which career path to choose</div>
-              <div class="radio-opt" onclick="selectRadio('challenge-group', this, 'challenge')" data-value="Know what I want but don't know how to start"><div class="radio-dot"></div>I know what I want but don't know how to start</div>
-              <div class="radio-opt" onclick="selectRadio('challenge-group', this, 'challenge')" data-value="Getting first internship or job"><div class="radio-dot"></div>Getting my first internship or job</div>
-              <div class="radio-opt" onclick="selectRadio('challenge-group', this, 'challenge')" data-value="Bridging gap between university and industry"><div class="radio-dot"></div>Bridging the gap between university and industry</div>
-              <div class="radio-opt" onclick="selectRadio('challenge-group', this, 'challenge')" data-value="Understanding freelancing as a career"><div class="radio-dot"></div>Understanding freelancing as a career</div>
-              <div class="radio-opt" onclick="selectRadio('challenge-group', this, 'challenge')" data-value="Other"><div class="radio-dot"></div>Other</div>
-            </div>
-            <span class="error-msg" id="err-challenge">&#9888; Please select an option</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label" for="panel-question">Question for the panel</label>
-            <p class="q-hint">Optional — we'll try to address these during the Q&amp;A session.</p>
-            <textarea id="panel-question" name="panel-question" placeholder="Ask the speakers anything — salary, how to start, remote work, freelancing..."></textarea>
-          </div>
-
+        <div class="form-section">
+          <h2><span class="n">03</span> Motivation</h2>
+          <div class="field"><label>Why do you want to join this training program? <span class="req">*</span></label><textarea name="motivation" placeholder="Tell us about your goals..." required></textarea></div>
         </div>
-      </div>
-      <div class="nav-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(3)">Back</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(3)">Next <span class="arrow"></span></button>
-      </div>
-    </div>
 
-    <!-- SECTION 4: Logistics -->
-    <div class="form-section" id="sec4">
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">4</div>
-          <span class="section-title">Logistics</span>
+        <div class="form-section">
+          <h2><span class="n">04</span> Background</h2>
+          <div class="field"><label>Do you have any prior knowledge or experience related to this course?</label><textarea name="background" placeholder="Briefly describe your relevant background, if any..."></textarea></div>
         </div>
-        <div class="question-group">
 
-          <div class="q-block">
-            <label class="q-label">How did you hear about this event? <span class="req">*</span></label>
-            <div class="radio-grid" id="source-group">
-              <div class="radio-opt" onclick="selectRadio('source-group', this, 'source')" data-value="WhatsApp group / class group"><div class="radio-dot"></div>WhatsApp group / class group</div>
-              <div class="radio-opt" onclick="selectRadio('source-group', this, 'source')" data-value="Faculty announcement"><div class="radio-dot"></div>Faculty announcement</div>
-              <div class="radio-opt" onclick="selectRadio('source-group', this, 'source')" data-value="Social media (LinkedIn / Instagram)"><div class="radio-dot"></div>Social media (LinkedIn / Instagram)</div>
-              <div class="radio-opt" onclick="selectRadio('source-group', this, 'source')" data-value="Friend or classmate"><div class="radio-dot"></div>Friend or classmate</div>
-              <div class="radio-opt" onclick="selectRadio('source-group', this, 'source')" data-value="PTUT notice board"><div class="radio-dot"></div>PTUT notice board</div>
-              <div class="radio-opt" onclick="selectRadio('source-group', this, 'source')" data-value="Other"><div class="radio-dot"></div>Other</div>
-            </div>
-            <span class="error-msg" id="err-source">&#9888; Please select an option</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label">Will you attend in person? <span class="req">*</span></label>
-            <div class="radio-grid" id="attend-group">
-              <div class="radio-opt" onclick="selectRadio('attend-group', this, 'attend')" data-value="Yes, definitely"><div class="radio-dot"></div>Yes, I will definitely be there</div>
-              <div class="radio-opt" onclick="selectRadio('attend-group', this, 'attend')" data-value="Most likely yes"><div class="radio-dot"></div>Most likely yes</div>
-              <div class="radio-opt" onclick="selectRadio('attend-group', this, 'attend')" data-value="Not sure yet"><div class="radio-dot"></div>Not sure yet</div>
-              <div class="radio-opt" onclick="selectRadio('attend-group', this, 'attend')" data-value="No, want updates / recording"><div class="radio-dot"></div>No, but I want updates / recording</div>
-            </div>
-            <span class="error-msg" id="err-attend">&#9888; Please select an option</span>
-          </div>
-
-          <div class="q-block">
-            <label class="q-label">Rate your confidence entering the IT industry</label>
-            <p class="q-hint">1 = not confident at all &nbsp;·&nbsp; 5 = very confident</p>
-            <div class="scale-wrapper">
-              <div class="scale-row" id="scale-group">
-                <button type="button" class="scale-btn" onclick="selectScale(this, 1)">1</button>
-                <button type="button" class="scale-btn" onclick="selectScale(this, 2)">2</button>
-                <button type="button" class="scale-btn" onclick="selectScale(this, 3)">3</button>
-                <button type="button" class="scale-btn" onclick="selectScale(this, 4)">4</button>
-                <button type="button" class="scale-btn" onclick="selectScale(this, 5)">5</button>
-              </div>
-              <div class="scale-labels"><span>Not confident</span><span>Very confident</span></div>
+        <div class="form-section">
+          <h2><span class="n">05</span> Course Requests</h2>
+          <div class="field">
+            <label>What other courses would you like Averon Global to launch at UCP?</label>
+            <div class="check-grid">
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="Full Stack Web Development"> Full Stack Web Dev</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="AI Engineering"> AI Engineering</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="DevSecOps & Cloud Security"> DevSecOps & Security</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="React Native Mobile Dev"> React Native</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="Freelancing Pro"> Freelancing Pro</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="UI/UX Design with Figma"> UI/UX Design</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="QA Engineering"> QA Engineering</label>
+              <label class="check-opt"><input type="checkbox" name="courseRequests" value="All Access Bundle"> All Access Bundle</label>
             </div>
           </div>
-
+          <div class="field"><label>Other — tell us what course you'd like to see</label><input type="text" name="otherCourseRequest" placeholder="e.g. Cybersecurity Fundamentals (optional)"></div>
         </div>
-      </div>
-      <div class="nav-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(4)">Back</button>
-        <button type="button" class="btn btn-submit" onclick="submitForm()">Submit registration <span class="arrow"></span></button>
-      </div>
-    </div>
 
-  </form>
+        <div class="form-section">
+          <h2><span class="n">06</span> Additional Information</h2>
+          <div class="field">
+            <label>How did you hear about Averon Global?</label>
+            <select name="referral">
+              <option value="">Select an option...</option>
+              <option>Instagram</option>
+              <option>LinkedIn</option>
+              <option>Facebook</option>
+              <option>WhatsApp Group</option>
+              <option>Friend / Referral</option>
+              <option>Google Search</option>
+              <option>University Email</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label>Any questions or comments?</label><textarea name="comments" placeholder="Optional"></textarea></div>
+        </div>
 
-  <!-- SUCCESS -->
-  <div class="success-screen" id="successScreen">
-    <div class="section-card" style="padding:2.5rem 2rem;text-align:center;">
-      <div class="success-icon"><div class="check-mark"></div></div>
-      <h2 class="success-title">You're registered!</h2>
-      <p class="success-sub">Thank you for signing up. We'll send event details and your confirmation to your email before the talk.</p>
-      <div class="detail-chips">
-        <span class="chip">Industry Talk · PTUT Lahore</span>
-        <span class="chip">Bridging Academia &amp; IT Industry</span>
-        <span class="chip">Free Entry</span>
-      </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
+        <div class="success-msg" id="successMsg">Registration submitted! We'll contact you within 48 hours.</div>
+        <div class="error-msg" id="errorMsg">Something went wrong. Please try again or email info@averongbl.com.</div>
+      </form>
     </div>
   </div>
-
 </div>
 
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="https://averongbl.com/" class="nav-logo" style="margin-bottom:0.75rem;display:inline-flex;">
+        <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+          <defs>
+            <linearGradient id="lg3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00D4FF"/><stop offset="50%" stop-color="#2563EB"/><stop offset="100%" stop-color="#7C3AED"/>
+            </linearGradient>
+          </defs>
+          <path d="M19 3 L35 34 H24 L19 22 L14 34 H3 L19 3Z" fill="url(#lg3)"/>
+          <path d="M19 10 L29 32 H24 L19 20 L14 32 H9 L19 10Z" fill="rgba(0,212,255,0.2)"/>
+          <circle cx="19" cy="24" r="2.5" fill="#00D4FF"/>
+        </svg>
+        <div class="logo-text" style="margin-left:10px;">
+          <span class="logo-name">AVERON</span>
+          <span class="logo-tagline">GLOBAL</span>
+        </div>
+      </a>
+      <p>Empowering Pakistani CS graduates with real technical skills to compete in a global market.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="https://averongbl.com/courses/aws-devops.html">Cloud & DevOps</a></li>
+        <li><a href="https://averongbl.com/courses/fullstack.html">Full Stack Dev</a></li>
+        <li><a href="https://averongbl.com/courses/ai-engineering.html">AI Engineering</a></li>
+        <li><a href="https://averongbl.com/courses/qa-engineering.html">QA & Testing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://averongbl.com/about.html">About Us</a></li>
+        <li><a href="https://averongbl.com/courses.html">All Courses</a></li>
+        <li><a href="https://averongbl.com/contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@averongbl.com">hello@averongbl.com</a></li>
+        <li><a href="https://averongbl.com/contact.html">WhatsApp Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Averon Global. Empower. Elevate. Scale.</span>
+    <span>averongbl.com</span>
+  </div>
+</footer>
+
 <script>
-  const formData = {};
-  let currentSection = 1;
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+document.addEventListener('DOMContentLoaded', updateCourseAvailability);
 
-  function updateProgress(sec) {
-    for (let i = 1; i <= 4; i++) {
-      const el = document.getElementById('ps' + i);
-      if (i < sec) el.className = 'prog-seg done';
-      else if (i === sec) el.className = 'prog-seg active';
-      else el.className = 'prog-seg';
-    }
-    document.getElementById('prog-label').textContent = 'Step ' + sec + ' of 4';
+const COURSE_SCHEDULES = {
+  'Cloud and DevOps Career Services': 'Tuesday & Thursday, 11:00 AM – 1:00 PM',
+  'Python Foundations For AI': 'Tuesday & Thursday, 12:00 PM – 2:00 PM'
+};
+
+function updateSchedule(){
+  const course = document.getElementById('courseSelect').value;
+  const field = document.getElementById('scheduleField');
+  const text = document.getElementById('scheduleText');
+  if (COURSE_SCHEDULES[course]) {
+    text.textContent = COURSE_SCHEDULES[course];
+    field.style.display = 'block';
+  } else {
+    field.style.display = 'none';
+  }
+}
+
+function updateCourseAvailability(){
+  const uni = document.getElementById('universitySelect').value;
+  const isUCP = uni === 'UCP';
+  const courseSelect = document.getElementById('courseSelect');
+  const note = document.getElementById('courseAvailNote');
+  const optDevOps = document.getElementById('optDevOps');
+  optDevOps.disabled = !isUCP;
+  optDevOps.textContent = isUCP ? optDevOps.dataset.label : optDevOps.dataset.label + ' — Coming Soon';
+  courseSelect.value = '';
+  updateSchedule();
+  note.style.display = isUCP ? 'none' : 'block';
+
+  const emailInput = document.getElementById('emailInput');
+  const emailNote = document.getElementById('emailDomainNote');
+  emailInput.placeholder = isUCP ? 'yourname@ucp.edu.pk' : 'ali@example.com';
+  emailNote.style.display = isUCP ? 'block' : 'none';
+}
+
+const UCP_EMAIL_RE = /^[^\s@]+@ucp\.edu\.pk$/i;
+
+// Paste the Google Apps Script Web App URL here (see setup guide).
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5QNYi8qhWoNPwM2O36MBIgQJCK495oLzzJu2xcHq4Z7s23Gfzlq3RerzIWV7sTTRxgQ/exec";
+
+function handleSubmit(e){
+  e.preventDefault();
+  const form = document.getElementById('regForm');
+  const btn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg = document.getElementById('errorMsg');
+  successMsg.style.display = 'none';
+  errorMsg.style.display = 'none';
+
+  if (form.university.value === 'UCP' && !UCP_EMAIL_RE.test(form.email.value.trim())) {
+    errorMsg.textContent = '⚠️ Please use your official UCP email address (must end in @ucp.edu.pk).';
+    errorMsg.style.display = 'block';
+    return;
   }
 
-  function showSection(n) {
-    document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
-    const el = document.getElementById('sec' + n);
-    if (el) el.classList.add('active');
-    updateProgress(n);
-    currentSection = n;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const courseRequests = Array.from(form.querySelectorAll('input[name="courseRequests"]:checked')).map(el => el.value);
+
+  const data = {
+    fullName: form.fullName.value,
+    email: form.email.value,
+    mobile: form.mobile.value,
+    university: form.university.value,
+    degree: form.degree.value,
+    course: form.course.value,
+    schedule: COURSE_SCHEDULES[form.course.value] || '',
+    motivation: form.motivation.value,
+    background: form.background.value,
+    courseRequests: courseRequests.join(', '),
+    otherCourseRequest: form.otherCourseRequest.value,
+    referral: form.referral.value,
+    comments: form.comments.value,
+    submittedAt: new Date().toISOString()
+  };
+
+  if (SCRIPT_URL.indexOf('PASTE_YOUR') === 0) {
+    errorMsg.textContent = '⚠️ Form is not connected to Google Sheets yet. See setup guide.';
+    errorMsg.style.display = 'block';
+    return;
   }
 
-  function selectRadio(groupId, el, field) {
-    document.querySelectorAll('#' + groupId + ' .radio-opt').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    formData[field] = el.dataset.value;
-    const err = document.getElementById('err-' + field);
-    if (err) err.classList.remove('show');
-    if (field === 'role') {
-      const isStudent = el.dataset.value === 'Student';
-      const isFaculty = el.dataset.value === 'Faculty member' || el.dataset.value === 'Industry professional / guest';
-      document.getElementById('semester-block').style.display = isStudent ? '' : 'none';
-      document.getElementById('designation-block').style.display = isFaculty ? '' : 'none';
-    }
-  }
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
 
-  function toggleCheck(el, field) {
-    el.classList.toggle('selected');
-    if (!formData[field]) formData[field] = [];
-    const val = el.textContent.trim();
-    const idx = formData[field].indexOf(val);
-    if (idx > -1) formData[field].splice(idx, 1);
-    else formData[field].push(val);
-    const err = document.getElementById('err-' + field);
-    if (err && formData[field].length > 0) err.classList.remove('show');
-  }
-
-  function selectScale(btn, val) {
-    document.querySelectorAll('#scale-group .scale-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    formData['confidence'] = val;
-  }
-
-  function validateSection(n) {
-    let valid = true;
-    if (n === 1) {
-      const name = document.getElementById('fullname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!name) { showErr('fullname'); valid = false; }
-      else hideErr('fullname');
-      if (!emailRe.test(email)) { showErr('email'); valid = false; }
-      else hideErr('email');
-      formData['fullname'] = name;
-      formData['email'] = email;
-      formData['phone'] = document.getElementById('phone').value.trim();
-    }
-    if (n === 2) {
-      if (!formData['role']) { document.getElementById('err-role').classList.add('show'); valid = false; }
-      const inst = document.getElementById('institution').value.trim();
-      const dept = document.getElementById('department').value.trim();
-      if (!inst) { showErr('institution'); valid = false; } else hideErr('institution');
-      if (!dept) { showErr('department'); valid = false; } else hideErr('department');
-      formData['institution'] = inst;
-      formData['department'] = dept;
-      formData['semester'] = document.getElementById('semester').value;
-      formData['designation'] = document.getElementById('designation').value.trim();
-    }
-    if (n === 3) {
-      if (!formData['careers'] || formData['careers'].length === 0) {
-        document.getElementById('err-careers').classList.add('show'); valid = false;
-      }
-      if (!formData['challenge']) { document.getElementById('err-challenge').classList.add('show'); valid = false; }
-      formData['panelQuestion'] = document.getElementById('panel-question').value.trim();
-    }
-    if (n === 4) {
-      if (!formData['source']) { document.getElementById('err-source').classList.add('show'); valid = false; }
-      if (!formData['attend']) { document.getElementById('err-attend').classList.add('show'); valid = false; }
-    }
-    return valid;
-  }
-
-  function showErr(field) {
-    const el = document.getElementById('err-' + field);
-    const inp = document.getElementById(field);
-    if (el) el.classList.add('show');
-    if (inp) inp.classList.add('error');
-  }
-
-  function hideErr(field) {
-    const el = document.getElementById('err-' + field);
-    const inp = document.getElementById(field);
-    if (el) el.classList.remove('show');
-    if (inp) inp.classList.remove('error');
-  }
-
-  function nextSection(n) {
-    if (!validateSection(n)) return;
-    showSection(n + 1);
-  }
-
-  function prevSection(n) {
-    showSection(n - 1);
-  }
-
-  async function submitForm() {
-    if (!validateSection(4)) return;
-
-    const submitBtn = document.querySelector('.btn-submit');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-
-    const payload = {
-      'Full Name':          formData.fullname || '',
-      'Email':              formData.email || '',
-      'Phone':              formData.phone || '',
-      'Role':               formData.role || '',
-      'Institution':        formData.institution || '',
-      'Department':         formData.department || '',
-      'Semester':           formData.semester || '',
-      'Designation':        formData.designation || '',
-      'Career Interests':   (formData.careers || []).join(', '),
-      'Biggest Challenge':  formData.challenge || '',
-      'Question for Panel': formData.panelQuestion || '',
-      'Heard About Event':  formData.source || '',
-      'Will Attend':        formData.attend || '',
-      'Confidence Rating':  formData.confidence ? formData.confidence + ' / 5' : 'Not answered',
-      '_subject':           'New Registration: PTUT Industry Talk — ' + (formData.fullname || 'Unknown'),
-    };
-
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbxX-bFptlHONigvEjTTNDr77ojrwPFG-U2xQK7oDxTXb9toVaV1byTO05odwdNUPy1IxA/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      // no-cors means we can't read the response, but submission goes through
-      document.getElementById('regForm').style.display = 'none';
-      document.getElementById('successScreen').classList.add('show');
-      document.querySelector('.progress-bar').style.display = 'none';
-      document.querySelector('.required-note').style.display = 'none';
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Submit registration <span class="arrow"></span>';
-      alert('Network error. Please check your connection and try again.');
-    }
-  }
-
-  document.querySelectorAll('input, textarea, select').forEach(el => {
-    el.addEventListener('input', () => {
-      el.classList.remove('error');
-      const errEl = document.getElementById('err-' + el.id);
-      if (errEl) errEl.classList.remove('show');
-    });
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data)
+  })
+  .then(() => {
+    successMsg.style.display = 'block';
+    btn.textContent = 'Submitted!';
+    form.reset();
+    setTimeout(() => { btn.textContent = 'Submit Registration'; btn.disabled = false; successMsg.style.display = 'none'; }, 6000);
+  })
+  .catch(() => {
+    errorMsg.style.display = 'block';
+    btn.textContent = 'Submit Registration';
+    btn.disabled = false;
   });
+}
 </script>
 </body>
 </html>
