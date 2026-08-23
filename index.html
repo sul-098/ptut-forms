@@ -159,18 +159,29 @@
           </div>
         </div>
 
+        <div class="form-section" id="paymentSection" style="display:none">
+          <h2><span class="n">03</span> Payment</h2>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;margin-bottom:20px">
+            <p style="font-size:.9rem;color:var(--gray2);margin-bottom:14px">Scan to pay <strong id="paymentFeeText" style="color:var(--cyan)"></strong> via Easypaisa, then fill in the details below.</p>
+            <img src="easypaisa_qr.jpeg" alt="Easypaisa QR — Muhammad Suleman" style="max-width:240px;width:100%;border-radius:10px;border:1px solid var(--border)">
+            <p style="font-size:.85rem;color:var(--gray2);margin-top:12px">Muhammad Suleman · Easypaisa · MSISDN ending 5246</p>
+          </div>
+          <div class="field"><label>Transaction ID <span class="req">*</span></label><input type="text" name="transactionId" id="transactionIdInput" placeholder="e.g. from your Easypaisa payment confirmation SMS"></div>
+          <div class="field"><label>Payment Screenshot</label><input type="file" name="paymentScreenshot" id="screenshotInput" accept=".png,.jpg,.jpeg"><span class="sub" style="display:block;font-size:.78rem;color:var(--gray2);margin-top:6px">Optional but recommended, max 5MB.</span></div>
+        </div>
+
         <div class="form-section">
-          <h2><span class="n">03</span> Motivation</h2>
+          <h2><span class="n">04</span> Motivation</h2>
           <div class="field"><label>Why do you want to join this training program? <span class="req">*</span></label><textarea name="motivation" placeholder="Tell us about your goals..." required></textarea></div>
         </div>
 
         <div class="form-section">
-          <h2><span class="n">04</span> Background</h2>
+          <h2><span class="n">05</span> Background</h2>
           <div class="field"><label>Do you have any prior knowledge or experience related to this course?</label><textarea name="background" placeholder="Briefly describe your relevant background, if any..."></textarea></div>
         </div>
 
         <div class="form-section">
-          <h2><span class="n">05</span> Course Requests</h2>
+          <h2><span class="n">06</span> Course Requests</h2>
           <div class="field">
             <label>What other courses would you like Averon Global to launch at UCP?</label>
             <div class="check-grid">
@@ -188,7 +199,7 @@
         </div>
 
         <div class="form-section">
-          <h2><span class="n">06</span> Additional Information</h2>
+          <h2><span class="n">07</span> Additional Information</h2>
           <div class="field">
             <label>How did you hear about Averon Global?</label>
             <select name="referral">
@@ -293,18 +304,37 @@ function updateSchedule(){
 
   const feeField = document.getElementById('feeField');
   const feeText = document.getElementById('feeText');
+  const paymentSection = document.getElementById('paymentSection');
+  const paymentFeeText = document.getElementById('paymentFeeText');
+  const transactionIdInput = document.getElementById('transactionIdInput');
   if (COURSE_FEES[course]) {
     feeText.textContent = COURSE_FEES[course];
     feeField.style.display = 'block';
+    paymentSection.style.display = 'block';
+    paymentFeeText.textContent = COURSE_FEES[course];
+    transactionIdInput.required = true;
   } else {
     feeField.style.display = 'none';
+    paymentSection.style.display = 'none';
+    transactionIdInput.required = false;
   }
+}
+
+const MAX_SCREENSHOT_BYTES = 5 * 1024 * 1024; // 5MB
+
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 // Paste the Google Apps Script Web App URL here (see setup guide).
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5QNYi8qhWoNPwM2O36MBIgQJCK495oLzzJu2xcHq4Z7s23Gfzlq3RerzIWV7sTTRxgQ/exec";
 
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
   const form = document.getElementById('regForm');
   const btn = document.getElementById('submitBtn');
@@ -312,6 +342,22 @@ function handleSubmit(e){
   const errorMsg = document.getElementById('errorMsg');
   successMsg.style.display = 'none';
   errorMsg.style.display = 'none';
+
+  const course = form.course.value;
+  const fee = COURSE_FEES[course] || '';
+
+  if (fee && !form.transactionId.value.trim()) {
+    errorMsg.textContent = '⚠️ Please enter your Easypaisa transaction ID after paying.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  const screenshotFile = document.getElementById('screenshotInput').files[0];
+  if (screenshotFile && screenshotFile.size > MAX_SCREENSHOT_BYTES) {
+    errorMsg.textContent = '⚠️ Payment screenshot is too large — please keep it under 5MB.';
+    errorMsg.style.display = 'block';
+    return;
+  }
 
   const courseRequests = Array.from(form.querySelectorAll('input[name="courseRequests"]:checked')).map(el => el.value);
 
@@ -321,9 +367,10 @@ function handleSubmit(e){
     mobile: form.mobile.value,
     university: form.university.value,
     degree: form.degree.value,
-    course: form.course.value,
-    schedule: COURSE_SCHEDULES[form.course.value] || '',
-    fee: COURSE_FEES[form.course.value] || '',
+    course: course,
+    schedule: COURSE_SCHEDULES[course] || '',
+    fee: fee,
+    transactionId: form.transactionId.value,
     motivation: form.motivation.value,
     background: form.background.value,
     courseRequests: courseRequests.join(', '),
@@ -339,26 +386,35 @@ function handleSubmit(e){
     return;
   }
 
-  btn.textContent = 'Submitting...';
+  btn.textContent = screenshotFile ? 'Uploading...' : 'Submitting...';
   btn.disabled = true;
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(data)
-  })
-  .then(() => {
+  try {
+    if (screenshotFile) {
+      data.screenshotFileName = screenshotFile.name;
+      data.screenshotMimeType = screenshotFile.type || 'application/octet-stream';
+      data.screenshotBase64 = await fileToBase64(screenshotFile);
+    }
+
+    btn.textContent = 'Submitting...';
+
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(data)
+    });
     successMsg.style.display = 'block';
     btn.textContent = 'Submitted!';
     form.reset();
+    document.getElementById('paymentSection').style.display = 'none';
+    document.getElementById('scheduleField').style.display = 'none';
+    document.getElementById('feeField').style.display = 'none';
     setTimeout(() => { btn.textContent = 'Submit Registration'; btn.disabled = false; successMsg.style.display = 'none'; }, 6000);
-  })
-  .catch(() => {
+  } catch (err) {
     errorMsg.style.display = 'block';
     btn.textContent = 'Submit Registration';
     btn.disabled = false;
-  });
+  }
 }
 </script>
 </body>
