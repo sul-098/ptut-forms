@@ -167,7 +167,6 @@
             <p style="font-size:.85rem;color:var(--gray2);margin-top:12px">Muhammad Suleman · Easypaisa · MSISDN ending 5246</p>
           </div>
           <div class="field"><label>Transaction ID <span class="req">*</span></label><input type="text" name="transactionId" id="transactionIdInput" placeholder="e.g. from your Easypaisa payment confirmation SMS"></div>
-          <div class="field"><label>Payment Screenshot</label><input type="file" name="paymentScreenshot" id="screenshotInput" accept=".png,.jpg,.jpeg"><span class="sub" style="display:block;font-size:.78rem;color:var(--gray2);margin-top:6px">Optional but recommended, max 5MB.</span></div>
         </div>
 
         <div class="form-section">
@@ -320,21 +319,10 @@ function updateSchedule(){
   }
 }
 
-const MAX_SCREENSHOT_BYTES = 5 * 1024 * 1024; // 5MB
-
-function fileToBase64(file){
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result.split(',')[1]);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
 // Paste the Google Apps Script Web App URL here (see setup guide).
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5QNYi8qhWoNPwM2O36MBIgQJCK495oLzzJu2xcHq4Z7s23Gfzlq3RerzIWV7sTTRxgQ/exec";
 
-async function handleSubmit(e){
+function handleSubmit(e){
   e.preventDefault();
   const form = document.getElementById('regForm');
   const btn = document.getElementById('submitBtn');
@@ -348,13 +336,6 @@ async function handleSubmit(e){
 
   if (fee && !form.transactionId.value.trim()) {
     errorMsg.textContent = '⚠️ Please enter your Easypaisa transaction ID after paying.';
-    errorMsg.style.display = 'block';
-    return;
-  }
-
-  const screenshotFile = document.getElementById('screenshotInput').files[0];
-  if (screenshotFile && screenshotFile.size > MAX_SCREENSHOT_BYTES) {
-    errorMsg.textContent = '⚠️ Payment screenshot is too large — please keep it under 5MB.';
     errorMsg.style.display = 'block';
     return;
   }
@@ -386,23 +367,16 @@ async function handleSubmit(e){
     return;
   }
 
-  btn.textContent = screenshotFile ? 'Uploading...' : 'Submitting...';
+  btn.textContent = 'Submitting...';
   btn.disabled = true;
 
-  try {
-    if (screenshotFile) {
-      data.screenshotFileName = screenshotFile.name;
-      data.screenshotMimeType = screenshotFile.type || 'application/octet-stream';
-      data.screenshotBase64 = await fileToBase64(screenshotFile);
-    }
-
-    btn.textContent = 'Submitting...';
-
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify(data)
-    });
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data)
+  })
+  .then(() => {
     successMsg.style.display = 'block';
     btn.textContent = 'Submitted!';
     form.reset();
@@ -410,11 +384,12 @@ async function handleSubmit(e){
     document.getElementById('scheduleField').style.display = 'none';
     document.getElementById('feeField').style.display = 'none';
     setTimeout(() => { btn.textContent = 'Submit Registration'; btn.disabled = false; successMsg.style.display = 'none'; }, 6000);
-  } catch (err) {
+  })
+  .catch(() => {
     errorMsg.style.display = 'block';
     btn.textContent = 'Submit Registration';
     btn.disabled = false;
-  }
+  });
 }
 </script>
 </body>
