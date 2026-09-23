@@ -6,40 +6,40 @@
 <title>Student Registration — Averon Global</title>
 <meta name="description" content="Register for an Averon Global training program — Python for AI, DevOps, Web Development, QA, UI/UX, Graphic Design, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/shared.css">
 <style>
 .page-hero{padding:150px 5% 60px;text-align:center}
 .page-hero .section-label{display:block}
-.page-hero h1{font-family:'Sora',sans-serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:800;margin:0 0 20px;line-height:1.15;letter-spacing:-0.02em}
+.page-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:800;margin:0 0 20px;line-height:1.15;letter-spacing:-0.01em}
 .page-hero p{font-size:1.05rem;color:var(--gray);max-width:560px;margin:0 auto;line-height:1.7}
 .reg-section{padding:0 5% 100px}
 .reg-wrap{max-width:720px;margin:0 auto}
-.form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:40px;box-shadow:0 6px 20px -6px rgba(20,22,27,0.14),0 2px 6px -2px rgba(20,22,27,0.08)}
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:40px}
 .form-section{margin-bottom:32px}
 .form-section:last-of-type{margin-bottom:0}
-.form-section h2{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--white)}
-.form-section h2 span.n{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:700;color:var(--cyan);background:#FFF0E9;border-radius:999px;padding:2px 10px}
+.form-section h2{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--white)}
+.form-section h2 span.n{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--cyan);border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.1);border-radius:6px;padding:2px 8px}
 .field{margin-bottom:20px}
 .field:last-child{margin-bottom:0}
-.field label{display:block;font-size:.88rem;font-weight:700;margin-bottom:8px;color:var(--white)}
+.field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:8px;color:var(--white)}
 .field .req{color:var(--cyan)}
-.field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:'Manrope',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s;box-sizing:border-box}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #FFF0E9}
+.field input,.field select,.field textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s;box-sizing:border-box}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan)}
 .field textarea{resize:vertical;min-height:100px}
-.field select option{background:#fff}
+.field select option{background:var(--bg3)}
 .check-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.check-opt,.radio-opt{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:.88rem;cursor:pointer;transition:border-color .2s;color:var(--white)}
-.check-opt:hover,.radio-opt:hover{border-color:var(--cyan)}
+.check-opt,.radio-opt{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:.88rem;cursor:pointer;transition:border-color .2s;color:var(--white)}
+.check-opt:hover,.radio-opt:hover{border-color:rgba(0,212,255,.3)}
 .check-opt input,.radio-opt input{width:auto;accent-color:var(--cyan)}
 .radio-grid{display:flex;gap:10px;flex-wrap:wrap}
 .radio-grid .radio-opt{flex:1;min-width:140px;justify-content:center}
-.schedule-box{display:flex;align-items:center;gap:10px;background:#FFF0E9;border:1px solid rgba(255,90,31,.25);border-radius:10px;padding:13px 16px;color:var(--cyan2);font-size:.9rem;font-weight:600}
-.submit-btn{width:100%;padding:16px;background:var(--cyan);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:1.05rem;border:none;border-radius:999px;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;margin-top:8px;box-shadow:0 14px 30px -10px rgba(255,90,31,0.45)}
-.submit-btn:hover{background:var(--cyan2);transform:translateY(-2px);box-shadow:0 18px 34px -10px rgba(255,90,31,0.5)}
+.schedule-box{display:flex;align-items:center;gap:10px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:10px;padding:13px 16px;color:var(--cyan);font-size:.9rem;font-weight:500}
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;border:none;border-radius:10px;cursor:pointer;transition:opacity .2s,transform .2s;margin-top:8px;box-shadow:0 0 30px rgba(0,212,255,0.2)}
+.submit-btn:hover{opacity:.9;transform:translateY(-2px)}
 .submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.success-msg{display:none;background:#E8F8F0;border:1px solid rgba(23,165,103,.3);border-radius:10px;padding:16px;text-align:center;color:#0E7A4C;font-weight:700;margin-top:16px}
-.error-msg{display:none;background:#FDECEC;border:1px solid rgba(229,72,77,.3);border-radius:10px;padding:16px;text-align:center;color:#B3241A;font-weight:700;margin-top:16px}
+.success-msg{display:none;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:16px;text-align:center;color:#34D399;font-weight:600;margin-top:16px}
+.error-msg{display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:16px;text-align:center;color:#F87171;font-weight:600;margin-top:16px}
 @media(max-width:640px){.form-card{padding:24px}.check-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.check-grid{grid-template-columns:1fr}}
 </style>
@@ -52,18 +52,18 @@
     <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
       <defs>
         <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FF5A1F"/>
-          <stop offset="50%" stop-color="#2F5EFF"/>
-          <stop offset="100%" stop-color="#F0A500"/>
+          <stop offset="0%" stop-color="#00D4FF"/>
+          <stop offset="50%" stop-color="#2563EB"/>
+          <stop offset="100%" stop-color="#7C3AED"/>
         </linearGradient>
         <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FF5A1F" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#2F5EFF" stop-opacity="0.3"/>
+          <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#2563EB" stop-opacity="0.3"/>
         </linearGradient>
       </defs>
       <path d="M19 3 L35 34 H24 L19 22 L14 34 H3 L19 3Z" fill="url(#lg1)"/>
       <path d="M19 10 L29 32 H24 L19 20 L14 32 H9 L19 10Z" fill="url(#lg2)"/>
-      <circle cx="19" cy="24" r="2.5" fill="#FF5A1F"/>
+      <circle cx="19" cy="24" r="2.5" fill="#00D4FF"/>
     </svg>
     <div class="logo-text">
       <span class="logo-name">AVERON</span>
@@ -230,15 +230,15 @@
         <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
           <defs>
             <linearGradient id="lg3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#FF5A1F"/><stop offset="50%" stop-color="#2F5EFF"/><stop offset="100%" stop-color="#F0A500"/>
+              <stop offset="0%" stop-color="#00D4FF"/><stop offset="50%" stop-color="#2563EB"/><stop offset="100%" stop-color="#7C3AED"/>
             </linearGradient>
           </defs>
           <path d="M19 3 L35 34 H24 L19 22 L14 34 H3 L19 3Z" fill="url(#lg3)"/>
-          <path d="M19 10 L29 32 H24 L19 20 L14 32 H9 L19 10Z" fill="rgba(255,90,31,0.25)"/>
-          <circle cx="19" cy="24" r="2.5" fill="#FF5A1F"/>
+          <path d="M19 10 L29 32 H24 L19 20 L14 32 H9 L19 10Z" fill="rgba(0,212,255,0.2)"/>
+          <circle cx="19" cy="24" r="2.5" fill="#00D4FF"/>
         </svg>
         <div class="logo-text" style="margin-left:10px;">
-          <span class="logo-name" style="color:#fff;">AVERON</span>
+          <span class="logo-name">AVERON</span>
           <span class="logo-tagline">GLOBAL</span>
         </div>
       </a>
