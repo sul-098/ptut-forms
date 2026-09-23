@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Registration — Averon Global</title>
-<meta name="description" content="Register for an Averon Global training program — AWS DevOps, Full Stack, AI Engineering, and more.">
+<meta name="description" content="Register for an Averon Global training program — Python for AI, DevOps, Web Development, QA, UI/UX, Graphic Design, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/shared.css">
@@ -133,18 +133,18 @@
             <label>Which course would you like to register for? <span class="req">*</span></label>
             <select name="course" id="courseSelect" required onchange="updateSchedule()">
               <option value="">Select a course...</option>
-              <option value="Web Development">Web Development — PKR 5,000</option>
-              <option value="QA">QA — PKR 5,000</option>
-              <option value="AWS (DevOps)">AWS (DevOps) — PKR 10,000</option>
-              <option value="DevOps Basics (Networking, Linux, Tools)">DevOps Basics (Networking, Linux, Tools) — PKR 5,000</option>
-              <option value="AWS and Application Deployment">AWS and Application Deployment — PKR 15,000</option>
-              <option value="Python Foundations For AI">Python Foundations For AI — PKR 7,500</option>
+              <option value="Python Foundations for AI">Python Foundations for AI — PKR 5,000/month</option>
+              <option value="DevOps Career Series">DevOps Career Series — PKR 5,000/month</option>
+              <option value="Web App Development">Web App Development (HTML, CSS, JS, React & API Backend) — PKR 5,000/month</option>
+              <option value="QA Engineering">QA Engineering: Requirements to Go Live — PKR 5,000/month</option>
+              <option value="UI/UX Design with Figma">UI/UX Design with Figma: Zero to Portfolio — PKR 5,000/month</option>
+              <option value="Graphic Design">Graphic Design (Career Track) — PKR 5,000/month</option>
+              <option value="Build Your Own Product">Build Your Own Product: Design Thinking to Marketing — PKR 5,000/month</option>
               <optgroup label="Coming Soon">
                 <option disabled>AI Engineering — Coming Soon</option>
                 <option disabled>DevSecOps & Cloud Security — Coming Soon</option>
                 <option disabled>React Native Mobile Dev — Coming Soon</option>
                 <option disabled>Freelancing Pro — Coming Soon</option>
-                <option disabled>UI/UX Design with Figma — Coming Soon</option>
                 <option disabled>All Access Bundle — Coming Soon</option>
               </optgroup>
             </select>
@@ -190,8 +190,6 @@
               <label class="check-opt"><input type="checkbox" name="courseRequests" value="DevSecOps & Cloud Security"> DevSecOps & Security</label>
               <label class="check-opt"><input type="checkbox" name="courseRequests" value="React Native Mobile Dev"> React Native</label>
               <label class="check-opt"><input type="checkbox" name="courseRequests" value="Freelancing Pro"> Freelancing Pro</label>
-              <label class="check-opt"><input type="checkbox" name="courseRequests" value="UI/UX Design with Figma"> UI/UX Design</label>
-              <label class="check-opt"><input type="checkbox" name="courseRequests" value="QA Engineering"> QA Engineering</label>
               <label class="check-opt"><input type="checkbox" name="courseRequests" value="All Access Bundle"> All Access Bundle</label>
             </div>
           </div>
@@ -281,16 +279,23 @@
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 
 const COURSE_SCHEDULES = {
-  'Python Foundations For AI': 'Tuesday & Thursday, 12:00 PM – 2:00 PM'
+  'Python Foundations for AI': 'Saturday, 9:00 AM – 12:30 PM (8 weeks) · Instructor: Azeem Aslam',
+  'DevOps Career Series': 'Tuesday & Wednesday, 11:00 AM – 12:30 PM (3 weeks) · Instructor: Muhammad Suleman',
+  'Web App Development': 'Wednesday & Thursday, 12:00 PM – 2:00 PM (8 weeks) · Instructor: Muhammad Osama',
+  'QA Engineering': 'Wednesday & Thursday, 12:00 PM – 2:00 PM (8 weeks) · Instructor: Sajeel ur Rahman',
+  'UI/UX Design with Figma': 'Tuesday & Thursday, 2:00 PM – 4:00 PM (8 weeks) · Instructor: Muhammad Wasif',
+  'Graphic Design': 'Wednesday, 9:00 AM – 1:00 PM (8 weeks) · Instructor: Wasiq Ali',
+  'Build Your Own Product': 'Saturday, 9:00 AM – 1:00 PM (8 weeks) · Instructor: Wasiq Ali'
 };
 
 const COURSE_FEES = {
-  'Web Development': 'PKR 5,000',
-  'QA': 'PKR 5,000',
-  'AWS (DevOps)': 'PKR 10,000',
-  'DevOps Basics (Networking, Linux, Tools)': 'PKR 5,000',
-  'AWS and Application Deployment': 'PKR 15,000',
-  'Python Foundations For AI': 'PKR 7,500'
+  'Python Foundations for AI': 'PKR 5,000/month',
+  'DevOps Career Series': 'PKR 5,000/month',
+  'Web App Development': 'PKR 5,000/month',
+  'QA Engineering': 'PKR 5,000/month',
+  'UI/UX Design with Figma': 'PKR 5,000/month',
+  'Graphic Design': 'PKR 5,000/month',
+  'Build Your Own Product': 'PKR 5,000/month'
 };
 
 function updateSchedule(){
